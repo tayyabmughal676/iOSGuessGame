@@ -14,7 +14,7 @@ import SwiftUI
 class TriviaManager : ObservableObject{
     
     private(set) var trivia: [Trivia.Result] = []
-
+    
     @Published private(set) var length = 0
     @Published private(set) var index = 0
     @Published private(set) var reachedEnd = false
@@ -47,17 +47,17 @@ class TriviaManager : ObservableObject{
             let decodedData = try decoder.decode(Trivia.self, from: data)
             
             DispatchQueue.main.async {
-//                Reset
+                //                Reset
                 self.index = 0
                 self.score = 0
                 self.progress = 0.00
                 self.reachedEnd = false
-//                Data
+                //                Data
                 self.trivia = decodedData.results
                 self.length = self.trivia.count
                 self.setQuestion()
                 print("responseData: \(decodedData.results)")
-
+                
             }
             
         } catch  {
